@@ -56,6 +56,16 @@ app.post('/createPost', async (req, res) => {
   }
 });
 
+// Endpoint para listar todos los posts
+app.get('/listPost', async (req, res) => {
+  try {
+    const posts = await Post.find();
+    res.status(200).send(posts);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
