@@ -66,6 +66,18 @@ app.get('/listPost', async (req, res) => {
   }
 });
 
+// Endpoint para editar un post
+app.put('/editPost/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, content, author } = req.body;
+  try {
+    const updatedPost = await Post.findByIdAndUpdate(id, { title, content, author }, { new: true });
+    res.status(200).send(updatedPost);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
