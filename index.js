@@ -11,12 +11,26 @@ app.use(cors());
 app.options("*", cors());
 app.use(express.json());
 
-const port = process.env.Port || 3000;
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/api/users", usersRoutes());
 
+// Endpoint para crear un usuario
+app.post('/createUser', async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const userRecord = await admin.auth().createUser({
+      email,
+      password
+    });
+    res.status(201).send(userRecord);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+//Iniciar
+const port = process.env.Port || 3000;
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });
