@@ -37,6 +37,13 @@ app.post('/logIn', async (req, res) => {
   res.send('Login logic should be implemented on client side.');
 });
 
+// Endpoint para hacer logout de un usuario
+app.post('/logOut', async (req, res) => {
+  // Implementa la lógica de logout aquí
+  // Generalmente se hace en el frontend
+  res.send('Logout logic should be implemented on client side.');
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
