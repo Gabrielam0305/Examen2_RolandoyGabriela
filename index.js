@@ -32,15 +32,11 @@ app.post('/createUser', async (req, res) => {
 // Endpoint para loguear un usuario
 app.post('/logIn', async (req, res) => {
   const { email, password } = req.body;
-  // Implementa la lógica de autenticación aquí
-  // Firebase Authentication no tiene una función directa para logueo en backend, suele hacerse en frontend
   res.send('Login logic should be implemented on client side.');
 });
 
 // Endpoint para hacer logout de un usuario
 app.post('/logOut', async (req, res) => {
-  // Implementa la lógica de logout aquí
-  // Generalmente se hace en el frontend
   res.send('Logout logic should be implemented on client side.');
 });
 
@@ -70,9 +66,11 @@ app.get('/listPost', async (req, res) => {
     const posts = await Post.find();
     res.status(200).send(posts);
   } catch (error) {
-    res.status(400).send(error);
+    console.error("Error retrieving posts:", error);
+    res.status(500).json({ error: "Error retrieving posts", details: error.message });
   }
 });
+
 
 // Endpoint para editar un post
 app.put('/editPost/:id', async (req, res) => {
