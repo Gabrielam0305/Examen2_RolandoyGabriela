@@ -78,6 +78,17 @@ app.put('/editPost/:id', async (req, res) => {
   }
 });
 
+// Endpoint para eliminar un post
+app.delete('/deletePost/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Post.findByIdAndDelete(id);
+    res.status(204).send();
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
