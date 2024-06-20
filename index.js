@@ -1,7 +1,7 @@
 require("dotenv").config();
 const usersRoutes = require("./src/users/routes/user.route.js");
 const express = require("express");
-const dbConnect = require("./src/config/mongo.js");
+const Post = require("./src/config/mongo.js");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const firebaseConnect = require("./src/config/firebase.js");
@@ -47,11 +47,19 @@ app.post('/logOut', async (req, res) => {
 // Endpoint para crear un post
 app.post('/createPost', async (req, res) => {
   const { title, content, author } = req.body;
-  const post = new Post({ title, content, author });
+  console.log("Received data:", req.body); // Añadir un log para verificar los datos recibidos
+
+  // Validar que todos los campos requeridos están presentes
+  if (!title || !content || !author) {
+    return res.status(400).send({ error: "Todos los campos (title, content, author) son obligatorios." });
+  }
+
   try {
+    const post = new Post({ title, content, author });
     const savedPost = await post.save();
     res.status(201).send(savedPost);
   } catch (error) {
+    console.error("Error saving post:", error); // Añadir un log para verificar el error
     res.status(400).send(error);
   }
 });
