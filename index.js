@@ -29,6 +29,14 @@ app.post('/createUser', async (req, res) => {
   }
 });
 
+// Endpoint para loguear un usuario
+app.post('/logIn', async (req, res) => {
+  const { email, password } = req.body;
+  // Implementa la lógica de autenticación aquí
+  // Firebase Authentication no tiene una función directa para logueo en backend, suele hacerse en frontend
+  res.send('Login logic should be implemented on client side.');
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
