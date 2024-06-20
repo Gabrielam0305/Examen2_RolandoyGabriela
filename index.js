@@ -44,6 +44,18 @@ app.post('/logOut', async (req, res) => {
   res.send('Logout logic should be implemented on client side.');
 });
 
+// Endpoint para crear un post
+app.post('/createPost', async (req, res) => {
+  const { title, content, author } = req.body;
+  const post = new Post({ title, content, author });
+  try {
+    const savedPost = await post.save();
+    res.status(201).send(savedPost);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 //Iniciar
 const port = process.env.Port || 3000;
 app.listen(port, () => {
