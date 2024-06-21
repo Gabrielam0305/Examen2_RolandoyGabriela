@@ -31,10 +31,9 @@ exports.getPosts = async (req, res) => {
     const posts = await PostSchema.find();
     res.status(200).send(posts);
   } catch (error) {
-    console.error("Error retrieving posts:", error);
     res
       .status(500)
-      .json({ error: "Error retrieving posts", details: error.message });
+      .json({ error: "Error buscando posts", details: error.message });
   }
 };
 

@@ -2,7 +2,7 @@ require("dotenv").config();
 const usersRoutes = require("./src/users/routes/user.route.js");
 const postsRoutes = require("./src/posts/routes/post.route.js");
 const express = require("express");
-const dbConnect = require("./src/config/mongo.js");
+const MongoConnect = require("./src/config/mongo.js");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const firebaseConnect = require("./src/config/firebase.js");
@@ -22,5 +22,3 @@ app.use("/api/posts", postsRoutes());
 app.listen(port, () => {
   console.log("👀 Server running on port " + port);
 });
-
-dbConnect();
