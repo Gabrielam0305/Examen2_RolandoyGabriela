@@ -20,5 +20,6 @@ app.use("/api/users", usersRoutes());
 app.use("/api/posts", postsRoutes());
 
 app.listen(port, () => {
-  console.log("👀 Server running on port " + port);
+  console.log("👀 Servidor corriendo ", port);
 });
+MongoConnect();
