@@ -6,6 +6,6 @@ const firebaseConfig = {
   storageBucket: process.env.firebaseStorageBucket,
   messagingSenderId: process.env.firebaseMessagingSenderId,
   appId: process.env.firebaseAppId,
-  //   measurementId: process.env.firebaseMeasurementId,
 };
+console.log("Firebase service connected 😎");
 module.exports = initializeApp(firebaseConfig);

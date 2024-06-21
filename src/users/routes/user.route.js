@@ -1,5 +1,10 @@
 const express = require("express");
-const { createUser, logIn, logOut } = require("../controllers/users.ctrl.js");
+const {
+  createUser,
+  logIn,
+  logOut,
+} = require("../controllers/users.ctrl.js");
+// const { validatorCreateItem } = require("../validators/ejemplo.js");
 const router = express.Router();
 
 module.exports = function () {
